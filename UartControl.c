@@ -39,3 +39,31 @@ void buzzer_on(uint gpio, uint freq_hz) {
     // Habilita o PWM para começar a gerar o sinal no pino
     pwm_set_enabled(slice_num, true);
 }
+
+void buzzer_off(uint gpio) {
+    uint slice_num = pwm_gpio_to_slice_num(gpio);
+    // Desabilita PWM
+    pwm_set_enabled(slice_num, false);
+    gpio_set_function(gpio, GPIO_FUNC_SIO);
+    gpio_set_dir(gpio, GPIO_OUT);
+    gpio_put(gpio, 0);
+}
+
+int main() {
+    stdio_init_all();
+    sleep_ms(2000);
+
+    // Configurar LEDs como saída
+    gpio_init(LED_VERDE);
+    gpio_set_dir(LED_VERDE, GPIO_OUT);
+    gpio_init(LED_AZUL);
+    gpio_set_dir(LED_AZUL, GPIO_OUT);
+    gpio_init(LED_VERMELHO);
+    gpio_set_dir(LED_VERMELHO, GPIO_OUT);
+
+    // Buzzer inicialmente OFF
+    gpio_init(BUZZER);
+    gpio_set_dir(BUZZER, GPIO_OUT);
+    gpio_put(BUZZER, 0);
+
+    printf("Sistema iniciado. Aguardando comandos...\n");
