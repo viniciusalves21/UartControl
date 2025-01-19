@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = 'build/uartcontrol.uf2'
+elf = 'build/uartcontrol.elf'
