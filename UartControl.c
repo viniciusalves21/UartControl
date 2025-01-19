@@ -67,3 +67,57 @@ int main() {
     gpio_put(BUZZER, 0);
 
     printf("Sistema iniciado. Aguardando comandos...\n");
+    while (true) {
+        int c = getchar_timeout_us(0);
+        if (c != PICO_ERROR_TIMEOUT) {
+            switch (c) {
+                case '1':
+                    // LED verde
+                    gpio_put(LED_VERDE, 1);
+                    gpio_put(LED_AZUL, 0);
+                    gpio_put(LED_VERMELHO, 0);
+                    printf("Comando 1: LED verde ligado.\n");
+                    break;
+                case '2':
+                    // LED azul
+                    gpio_put(LED_VERDE, 0);
+                    gpio_put(LED_AZUL, 1);
+                    gpio_put(LED_VERMELHO, 0);
+                    printf("Comando 2: LED azul ligado.\n");
+                    break;
+                case '3':
+                    // LED vermelho
+                    gpio_put(LED_VERDE, 0);
+                    gpio_put(LED_AZUL, 0);
+                    gpio_put(LED_VERMELHO, 1);
+                    printf("Comando 3: LED vermelho ligado.\n");
+                    break;
+                case '4':
+                    // Todos os LEDs
+                    gpio_put(LED_VERDE, 1);
+                    gpio_put(LED_AZUL, 1);
+                    gpio_put(LED_VERMELHO, 1);
+                    printf("Comando 4: Todos os LEDs ligados.\n");
+                    break;
+                case '5':
+                    // Desligar LEDs
+                    desligar_leds();
+                    printf("Comando 5: Todos os LEDs desligados.\n");
+                    break;
+                case '6':
+                    // Buzzer por 2s (PWM)
+                    printf("Comando 6: Buzzer (PWM) ligado por 2s.\n");
+                    buzzer_on(BUZZER, 2000); 
+                    sleep_ms(2000);
+                    buzzer_off(BUZZER);
+                    break;
+                default:
+                    printf("Comando desconhecido: %c\n", c);
+                    break;
+            }
+        }
+        sleep_ms(50);
+    }
+
+    return 0;
+}
