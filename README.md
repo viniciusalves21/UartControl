@@ -23,6 +23,10 @@ Este projeto demonstra o controle de LEDs (Verde, Azul e Vermelho) e um buzzer u
 4.  **Abra o monitor serial:** Abra um monitor serial no seu computador configurado para a porta serial do Pico(BitDogLab).
 5.  **Envie comandos:** Envie os comandos numéricos ('1', '2', '3', '4', '5' ou '6') pelo monitor serial para controlar os LEDs e o buzzer.
 
+## Demonstração
+
+[Link para o vídeo ensaio https://drive.google.com/file/d/1_fayHtiMZtyabQDJ96dbV9vFnq_imjnZ/view?usp=sharing]
+
 ## Código
 
 O código principal contém as seguintes funções principais:
